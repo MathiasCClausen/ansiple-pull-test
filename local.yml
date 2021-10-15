@@ -2,10 +2,10 @@
 - hosts: all
   gather_facts: no
   vars:
-    on_state:
+    effect_state:
       "on": true
-      "bri": 120
-      "xy": [0.5701, 0.313]
+      "bri": 254
+      "effect": "{{effect|default('none')}}"
   tasks:
   - uri:
       url: "http://10.0.6.10/api/001788fffe4d9ae4/lights/{{item}}/state"
