@@ -8,7 +8,7 @@
       "effect": "{{effect|default('none')}}"
   tasks:
   - uri:
-      url: "http://10.0.6.10/api/001788fffe4d9ae4/lights/{{item}}/state"
+      url: "http://10.0.6.10/api/001788fffe4d9ae4/lights/1/state"
       method: PUT
       body: ' {{on_state|to_json}}'
     with_sequence: start=1 end=6
