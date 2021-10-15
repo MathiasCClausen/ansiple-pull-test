@@ -4,21 +4,20 @@
   tasks:
   - name: Create new Kibana dir
     copy: 
-      src: ansible_test_app 
-      dest: /tmp/
+      src: pc_dashboard.ndjson
+      dest: /Sort/
       owner: root
       group: root
 
-  - name: install example application
-    copy: 
-      src: ansible_test_app 
-      dest: /tmp/
-      owner: root
-      group: root
-
-  - name: install example application
-    copy: 
-      src: ansible_test_app 
-      dest: /tmp/
-      owner: root
-      group: root
+  - name: Import Dashboard to Kibana
+    uri:
+      url: http://localhost:5601/api/saved_objects/_import?overwrite=true
+      method: POST
+      headers:
+        Content-Type: "application/json; charset=utf-8"
+        kbn-xsrf: true
+      body_format: json
+      body: "pc_dashboard.ndjson"
+      user: "elastic"
+      password: "sheetsOnTheBed"
+      force_basic_auth: yes
